@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Design.css">
+  <title>Contact - Portfolio</title>
+  <style>
+    body {
+      background-image: url('vibrant-neon-blue-liquid.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    
+
+    header .logo {
+      font-size: 2em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .menu.active {
+      display: flex;
+    }
+
+    .menu li {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .menu li a {
+      color: #fff;
+      font-size: 2em;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 3em;
+      text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5);
+    }
+
+    form {
+      margin: 20px auto;
+      max-width: 400px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    input[type="submit"] {
+      padding: 10px;
+      background-color: #f00;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #c00;
+    }
+
+    .message {
+      margin: 20px 0;
+      font-size: 1.2em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Contact</a>
+    <div class="toggle"></div>
+  </header>
+
+  <ul class="menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="artworks.html">Artworks</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <section>
+    <h1>Contact Me</h1>
+    <form action="send_email.php" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="submit" value="Send Message">
+    </form>
+
+    <?php if (isset($_GET['success'])): ?>
+      <div class="message" style="color: #0f0;">Message sent successfully!</div>
+    <?php elseif (isset($_GET['error'])): ?>
+      <div class="message" style="color: #f00;">
+        <?php
+          if ($_GET['error'] == 'invalid_email') {
+            echo "Invalid email format.";
+          } elseif ($_GET['error'] == 'send_failed') {
+            echo "Failed to send message.";
+          } elseif ($_GET['error'] == 'invalid_request') {
+            echo "Invalid request method.";
+          }
+        ?>
+      </div>
+    <?php endif; ?>
+  </section>
+
+ 
+
+  <script src="java.js"></script>
+</body>
+</html>
